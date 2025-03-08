@@ -81,19 +81,18 @@ The project includes a **YAML configuration file** to define **model parameters,
 
 Example `config.yaml` file for YOLO:  
 ```yaml
-path: data/  # Dataset root directory
-train: train/images/  # Training images
-val: valid/images/  # Validation images
-test: test/images/  # Test images
+train: train/images
+val: valid/images
 
-nc: 1  # Number of classes (License Plate)
-names: ["License_Plate"]  # Class names
+nc: 2
+names: ['license plates', 'Cars']
 
-training:
-  epochs: 50
-  batch_size: 16
-  learning_rate: 0.001
-  optimizer: "Adam"
+roboflow:
+  workspace: sowmya-txkok
+  project: license-plates-ft9ne
+  version: 1
+  license: Private
+  url: https://app.roboflow.com/sowmya-txkok/license-plates-ft9ne/1
 ```
 🔹 Modify `config.yaml` to **adjust settings without modifying the main codebase**.  
 
