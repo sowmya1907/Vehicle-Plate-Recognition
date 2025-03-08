@@ -69,8 +69,6 @@ Users can upload an image via the web interface or API to receive the recognized
 - Myself (Sowmya)
 
 ## License
-This project is licensed under the **MIT License**.
+None
 
----
-Would you like to add more details or modify anything in the README? 🚀
 
