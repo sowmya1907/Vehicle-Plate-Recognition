@@ -24,27 +24,22 @@ License Plate Recognition (LPR) is a project designed to detect and recognize ve
 1️⃣ Install required dependencies:  
    ```bash
    pip install numpy opencv-python matplotlib pandas ultralytics pytesseract flask streamlit
-2️⃣ Install YOLOv8 (Ultralytics):
+   ```
+2️⃣ Install YOLOv8 (Ultralytics):  
+   ```bash
+   pip install ultralytics
+   ```
+3️⃣ Install and configure Tesseract OCR:  
+   ```bash
+   sudo apt install tesseract-ocr
+   pip install pytesseract
+   ```
+4️⃣ Clone the dataset and organize it properly in your directory.  
+5️⃣ Train the models (YOLO for detection, OCR for recognition).  
 
-bash
-Copy
-Edit
-pip install ultralytics
-3️⃣ Install and configure Tesseract OCR:
-
-bash
-Copy
-Edit
-sudo apt install tesseract-ocr
-pip install pytesseract
-4️⃣ Clone the dataset and organize it properly in your directory.
-5️⃣ Train the models (YOLO for detection, OCR for recognition).
-
-🚀 Usage
-🔹 License Plate Detection Using YOLOv8
-python
-Copy
-Edit
+## 🚀 Usage  
+### 🔹 License Plate Detection Using YOLOv8  
+```python
 from ultralytics import YOLO
 
 # Load the pre-trained YOLOv8 model
@@ -56,10 +51,10 @@ results = model(r"sample_image.jpg", save=True, conf=0.5)
 # Display results
 for result in results:
     print(result)
-🔹 Run OCR for Character Recognition
-python
-Copy
-Edit
+```
+
+### 🔹 Run OCR for Character Recognition  
+```python
 import cv2
 import pytesseract
 
@@ -73,21 +68,19 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 text = pytesseract.image_to_string(gray, config='--psm 7')
 
 print("Recognized License Plate:", text)
-🔹 Deploy Web App
-bash
-Copy
-Edit
+```
+
+### 🔹 Deploy Web App  
+```bash
 python app.py
-Users can upload an image via the web interface or API to receive the recognized license plate number.
+```
+Users can upload an image via the web interface or API to receive the recognized license plate number.  
 
-📄 YAML Configuration File
-The project includes a YAML configuration file to define model parameters, dataset paths, and training settings.
+## 📄 YAML Configuration File  
+The project includes a **YAML configuration file** to define **model parameters, dataset paths, and training settings**.  
 
-Example config.yaml file for YOLO:
-
-yaml
-Copy
-Edit
+Example `config.yaml` file for YOLO:  
+```yaml
 path: data/  # Dataset root directory
 train: train/images/  # Training images
 val: valid/images/  # Validation images
@@ -101,16 +94,20 @@ training:
   batch_size: 16
   learning_rate: 0.001
   optimizer: "Adam"
-🔹 Modify config.yaml to adjust settings without modifying the main codebase.
+```
+🔹 Modify `config.yaml` to **adjust settings without modifying the main codebase**.  
 
-## 📊 Evaluation Metrics
-License Plate Detection: IoU (Intersection over Union), Precision, Recall
-Character Recognition: Levenshtein Distance (Edit Distance) for text accuracy
-## 📸 Example Outputs
-Sample detected license plates using YOLOv8
-OCR-extracted text results
-Model performance metrics (confusion matrix, precision-recall curves)
-## 👩‍💻 Contributors
-Sowmya Guduguntla
-## 📜 License
-None
+## 📊 Evaluation Metrics  
+- **License Plate Detection**: IoU (Intersection over Union), Precision, Recall  
+- **Character Recognition**: Levenshtein Distance (Edit Distance) for text accuracy  
+
+## 📸 Example Outputs  
+- Sample detected license plates using YOLOv8  
+- OCR-extracted text results  
+- Model performance metrics (confusion matrix, precision-recall curves)  
+
+## 👩‍💻 Contributors  
+- **Sowmya Guduguntla**  
+
+## 📜 License  
+None  
