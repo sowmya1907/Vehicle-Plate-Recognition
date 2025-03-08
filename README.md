@@ -1,74 +1,117 @@
-# License Plate Recognition
+# 🚗 License Plate Recognition  
 
-## Overview
-License Plate Recognition (LPR) is a project designed to detect and recognize vehicle license plates from images. It involves two main tasks:
-1. **License Plate Detection**: Identifying and localizing license plates in vehicle images.
-2. **Character Recognition**: Extracting and recognizing the alphanumeric text from detected license plates.
+## 📌 Overview  
+License Plate Recognition (LPR) is a project designed to detect and recognize vehicle license plates from images. It involves two main tasks:  
+1. **License Plate Detection**: Identifying and localizing license plates in vehicle images using **YOLOv8**.  
+2. **Character Recognition**: Extracting and recognizing the alphanumeric text from detected license plates using **OCR models**.  
 
-## Features
-- **Dataset Handling**: Uses a dataset of 900 vehicle images with annotated license plates and 900 license plate images with text annotations.
-- **Preprocessing**: Includes image normalization, grayscale conversion, thresholding, and data augmentation.
-- **License Plate Detection**: Utilizes YOLOv8 or Faster R-CNN for detecting license plates.
-- **Character Recognition**: Implements OCR models such as Tesseract OCR, CRNN, or Transformer-based OCR.
-- **Evaluation Metrics**: Measures performance using Intersection over Union (IoU) and Levenshtein Distance for text accuracy.
-- **Deployment**: Can be deployed as a web application using Flask or Streamlit.
+## 🏆 Features  
+- **License Plate Detection**: Utilizes **YOLOv8** for real-time object detection.  
+- **Character Recognition**: Implements OCR models such as **Tesseract OCR, CRNN, or Transformer-based OCR**.  
+- **Dataset Handling**: Uses a dataset of 900+ annotated vehicle and license plate images.  
+- **Preprocessing**: Includes image normalization, grayscale conversion, and thresholding.  
+- **Deployment**: Can be deployed as a **web application using Flask or Streamlit**.  
 
-## Prerequisites
-- Python 3.11.9
-- Required Libraries: OpenCV, NumPy, Pandas, Matplotlib
-- Deep Learning Frameworks: TensorFlow/PyTorch
-- YOLOv8 (Ultralytics) for object detection
-- Tesseract OCR / EasyOCR for character recognition
-- Flask/Streamlit for web deployment
+## 🔧 Prerequisites  
+- **Python 3.11.9**  
+- **Deep Learning Frameworks**: PyTorch  
+- **Object Detection**: YOLOv8 (Ultralytics)  
+- **OCR Tools**: Tesseract OCR / EasyOCR  
+- **Libraries**: OpenCV, NumPy, Pandas, Matplotlib  
+- **Deployment**: Flask/Streamlit  
 
-## Installation
-1. Install required dependencies:
+## ⚙️ Installation  
+1️⃣ Install required dependencies:  
    ```bash
    pip install numpy opencv-python matplotlib pandas ultralytics pytesseract flask streamlit
-   ```
-2. Install YOLOv8:
-   ```bash
-   pip install ultralytics
-   ```
-3. Install and configure Tesseract OCR:
-   ```bash
-   sudo apt install tesseract-ocr
-   pip install pytesseract
-   ```
-4. Clone the dataset and organize it properly in your directory.
-5. Train the models (YOLO for detection, OCR for recognition).
+2️⃣ Install YOLOv8 (Ultralytics):
 
-## Usage
-### Train the Models
-```bash
-python train_yolo.py  # Train the YOLO model
-python train_ocr.py    # Train the OCR model
-```
+bash
+Copy
+Edit
+pip install ultralytics
+3️⃣ Install and configure Tesseract OCR:
 
-### Run License Plate Detection & Recognition
-```bash
-python detect_license_plate.py --image test_image.jpg
-```
+bash
+Copy
+Edit
+sudo apt install tesseract-ocr
+pip install pytesseract
+4️⃣ Clone the dataset and organize it properly in your directory.
+5️⃣ Train the models (YOLO for detection, OCR for recognition).
 
-### Deploy Web App
-```bash
+🚀 Usage
+🔹 License Plate Detection Using YOLOv8
+python
+Copy
+Edit
+from ultralytics import YOLO
+
+# Load the pre-trained YOLOv8 model
+model = YOLO(r"C:\Users\sowmy\Downloads\yolov8n (1).pt")
+
+# Perform inference on an image
+results = model(r"sample_image.jpg", save=True, conf=0.5)
+
+# Display results
+for result in results:
+    print(result)
+🔹 Run OCR for Character Recognition
+python
+Copy
+Edit
+import cv2
+import pytesseract
+
+# Load detected plate image
+image = cv2.imread("detected_plate.jpg")
+
+# Convert to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Apply OCR
+text = pytesseract.image_to_string(gray, config='--psm 7')
+
+print("Recognized License Plate:", text)
+🔹 Deploy Web App
+bash
+Copy
+Edit
 python app.py
-```
 Users can upload an image via the web interface or API to receive the recognized license plate number.
 
-## Evaluation Metrics
-- **License Plate Detection**: IoU (Intersection over Union) and Precision-Recall.
-- **Character Recognition**: Levenshtein Distance (Edit Distance) for text accuracy.
+📄 YAML Configuration File
+The project includes a YAML configuration file to define model parameters, dataset paths, and training settings.
 
-## Example Outputs
-- Sample detected license plates before OCR.
-- OCR-extracted text results.
-- Model performance metrics (confusion matrix, precision-recall curves).
+Example config.yaml file for YOLO:
 
-## Contributors
-- Myself (Sowmya)
+yaml
+Copy
+Edit
+path: data/  # Dataset root directory
+train: train/images/  # Training images
+val: valid/images/  # Validation images
+test: test/images/  # Test images
 
-## License
+nc: 1  # Number of classes (License Plate)
+names: ["License_Plate"]  # Class names
+
+training:
+  epochs: 50
+  batch_size: 16
+  learning_rate: 0.001
+  optimizer: "Adam"
+🔹 Modify config.yaml to adjust settings without modifying the main codebase.
+
+📊 Evaluation Metrics
+License Plate Detection: IoU (Intersection over Union), Precision, Recall
+Character Recognition: Levenshtein Distance (Edit Distance) for text accuracy
+📸 Example Outputs
+Sample detected license plates using YOLOv8
+OCR-extracted text results
+Model performance metrics (confusion matrix, precision-recall curves)
+👩‍💻 Contributors
+Sowmya Guduguntla
+📜 License
 None
-
 
