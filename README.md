@@ -103,15 +103,14 @@ training:
   optimizer: "Adam"
 🔹 Modify config.yaml to adjust settings without modifying the main codebase.
 
-📊 Evaluation Metrics
+## 📊 Evaluation Metrics
 License Plate Detection: IoU (Intersection over Union), Precision, Recall
 Character Recognition: Levenshtein Distance (Edit Distance) for text accuracy
-📸 Example Outputs
+## 📸 Example Outputs
 Sample detected license plates using YOLOv8
 OCR-extracted text results
 Model performance metrics (confusion matrix, precision-recall curves)
-👩‍💻 Contributors
+## 👩‍💻 Contributors
 Sowmya Guduguntla
-📜 License
+## 📜 License
 None
-
